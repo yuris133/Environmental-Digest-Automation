@@ -1,0 +1,10 @@
+# Никогда не публиковать: ключи, токены, авторизация
+.claude/
+*.env
+
+# Рабочие логи и локальный кэш
+*.log
+weekly-run.log
+daily-post-run.log
+.wrangler/
+Thumbs.db
