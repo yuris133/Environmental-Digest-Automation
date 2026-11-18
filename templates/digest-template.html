@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЭкоДайджест №12 — полевой журнал</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3EEE2;
+    --paper-deep: #E9E2D2;
+    --ink: #1C3327;
+    --ink-soft: #3E5849;
+    --ink-faded: #7D8C7C;
+    --clay: #B4552D;
+    --olive: #6B7A3F;
+    --forest: #16281F;
+    --hairline: rgba(28, 51, 39, .22);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Golos Text', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Зернистость бумаги */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--olive); color: var(--paper); }
+
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 0;
+  }
+
+  /* ============ ПОЯВЛЕНИЕ ============ */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: rise .7s cubic-bezier(.22,.8,.3,1) both; }
+  .d1 { animation-delay: .05s } .d2 { animation-delay: .15s }
+  .d3 { animation-delay: .25s } .d4 { animation-delay: .35s }
+  .d5 { animation-delay: .45s }
+
+  /* ============ 1. ШАПКА ============ */
+  header {
+    padding: 48px 0 40px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    display: block;
+    margin: 36px auto 0;
+    width: 100%;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+  }
+  header::before {
+    content: '❧';
+    position: absolute;
+    bottom: -0.65em; left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    padding: 0 14px;
+    color: var(--olive);
+    font-size: 20px;
+    z-index: 2;
+  }
+
+  .stamp {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--clay);
+    border: 1px solid var(--clay);
+    padding: 7px 16px 6px;
+    border-radius: 2px;
+    transform: rotate(-2deg);
+    margin-bottom: 26px;
+  }
+
+  h1.masthead {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(52px, 9vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+  h1.masthead em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--olive);
+  }
+
+  .masthead-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead-sub b { color: var(--clay); font-weight: 600; }
+
+  /* ============ НАВИГАЦИЯ ПО РУБРИКАМ ============ */
+  nav.rubrics {
+    padding: 26px 0 10px;
+    text-align: center;
+  }
+  nav.rubrics a {
+    display: inline-block;
+    margin: 4px 3px;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--hairline);
+    padding: 7px 14px 6px;
+    border-radius: 999px;
+    transition: all .25s ease;
+  }
+  nav.rubrics a:hover {
+    background: var(--forest);
+    color: var(--paper);
+    border-color: var(--forest);
+  }
+
+  /* ============ ОБЩИЙ БЛОК СЕКЦИИ ============ */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--hairline); }
+
+  .section-mark {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .section-mark .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 30px;
+    color: var(--clay);
+    line-height: 1;
+  }
+  .section-mark h2 {
+    font-size: 12px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .section-mark::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--hairline);
+    transform: translateY(-5px);
+  }
+
+  /* ============ 2. ЛИД ============ */
+  .lead p {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vw, 29px);
+    line-height: 1.42;
+    font-weight: 500;
+    max-width: 700px;
+  }
+  .lead p::first-letter {
+    font-size: 2.6em;
+    font-weight: 700;
+    float: left;
+    line-height: .78;
+    padding: 6px 10px 0 0;
+    color: var(--clay);
+  }
+  .lead .sign {
+    margin-top: 18px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  /* ============ 3. НОВОСТИ ============ */
+  .news { display: grid; gap: 44px; max-width: 780px; }
+  .article { position: relative; padding-left: 54px; }
+  .article .glyph {
+    position: absolute;
+    left: 0; top: -4px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--ink-faded);
+    transition: color .3s ease;
+  }
+  .article:hover .glyph { color: var(--clay); }
+
+  .article .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+    margin-bottom: 10px;
+  }
+  .article h3 {
+    font-family: var(--serif);
+    font-size: clamp(23px, 3.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .article .essence { color: var(--ink-soft); margin-bottom: 14px; max-width: 640px; }
+  .article .why {
+    border-left: 2px solid var(--clay);
+    padding-left: 14px;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .article .why b {
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .18em;
+    color: var(--clay);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .article a.src {
+    font-size: 13px;
+    color: var(--ink-faded);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-faded);
+    transition: color .25s;
+  }
+  .article a.src:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* ============ 5. МАТЕРИАЛ НЕДЕЛИ ============ */
+  .feature-wrap { margin: 0 -20px; }
+  .feature {
+    background: var(--forest);
+    color: var(--paper);
+    padding: 52px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 220px; height: 220px;
+    border: 1px solid rgba(243,238,226,.15);
+    border-radius: 50%;
+  }
+  .feature::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 140px; height: 140px;
+    border: 1px solid rgba(243,238,226,.1);
+    border-radius: 50%;
+  }
+  .feature-wrap .section-mark { padding: 0 20px; margin-top: 48px; margin-bottom: 0; }
+  .feature .inside { max-width: 640px; }
+  .feature .kicker {
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: #A8B8A0;
+    margin-bottom: 18px;
+  }
+  .feature h3 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.12;
+    margin-bottom: 20px;
+  }
+  .feature p { color: rgba(243,238,226,.82); font-size: 16px; margin-bottom: 14px; }
+  .feature .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--paper);
+    border-left: 2px solid var(--olive);
+    padding: 4px 0 4px 20px;
+    margin: 26px 0;
+  }
+
+  /* ============ 6. ЦИФРА НЕДЕЛИ ============ */
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    flex-wrap: wrap;
+  }
+  .stat .big {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(90px, 16vw, 150px);
+    line-height: .85;
+    color: var(--forest);
+  }
+  .stat .big sup {
+    font-size: .35em;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--clay);
+  }
+  .stat .caption { max-width: 420px; font-size: 15px; color: var(--ink-soft); }
+  .stat .caption b {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  /* ============ 7. ПОДБОРКА ССЫЛОК ============ */
+  .list { max-width: 760px; }
+  .list .item {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .list .item:last-child { border-bottom: none; }
+  .list .kind {
+    flex-shrink: 0;
+    width: 84px;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+  }
+  .list .item a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .list .item a:hover { color: var(--clay); }
+  .list .item span.txt { font-size: 15px; color: var(--ink-soft); }
+
+  /* ============ 8. ИНТЕРАКТИВ ============ */
+  .question {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid var(--hairline);
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .question::before, .question::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--olive);
+    font-size: 14px;
+  }
+  .question::before { left: -34px; }
+  .question::after { right: -34px; }
+  .question p.ask {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.4vw, 32px);
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .question .opts { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .question .opts span {
+    font-size: 13px;
+    border: 1px solid var(--hairline);
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .question .opts span:hover {
+    background: var(--clay);
+    border-color: var(--clay);
+    color: var(--paper);
+  }
+
+  /* ============ 9. ФУТЕР ============ */
+  footer {
+    padding: 44px 0 60px;
+    text-align: center;
+    color: var(--ink-faded);
+    font-size: 13px;
+  }
+  footer .fronds { color: var(--olive); font-size: 18px; letter-spacing: .5em; margin-bottom: 14px; }
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-soft); }
+  footer a:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* ============ АДАПТИВ ============ */
+  @media (max-width: 640px) {
+    .article { padding-left: 0; padding-top: 34px; }
+    .article .glyph { top: -20px; }
+    .stat { gap: 18px; }
+    .list .item { flex-direction: column; gap: 4px; }
+    .question::before, .question::after { display: none; }
+    .feature { padding: 40px 22px; }
+    section { padding: 44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ==================== 1. ШАПКА ==================== -->
+  <header>
+    <div class="stamp reveal d1">Выпуск №12 · 26 октября 2026</div>
+    <h1 class="masthead reveal d2">Эко<em>Дайджест</em></h1>
+    <p class="masthead-sub reveal d3">Тема выпуска — <b>переработка и циркулярная экономика</b></p>
+  </header>
+
+  <!-- ==================== НАВИГАЦИЯ ==================== -->
+  <nav class="rubrics reveal d3">
+    <a href="#news">Новости</a>
+    <a href="#feature">Материал недели</a>
+    <a href="#stat">Цифра</a>
+    <a href="#links">Что почитать</a>
+    <a href="#ask">Опрос</a>
+  </nav>
+
+  <!-- ==================== 2. ЛИД ==================== -->
+  <section class="lead reveal d4">
+    <p>На этой неделе — запрет одноразового пластика в ЕС, рынок вторсырья вошёл в фазу роста, а мы разбираемся, как устроен рынок углеродных квот и почему его критикуют с обеих сторон.</p>
+    <p class="sign">— Ваш эко-корреспондент, полевые заметки за неделю</p>
+  </section>
+
+  <!-- ==================== 3–4. НОВОСТИ / РУБРИКИ ==================== -->
+  <section id="news">
+    <div class="section-mark">
+      <span class="num">01</span>
+      <h2>Новости недели</h2>
+    </div>
+    <div class="news">
+      <article class="article reveal d1">
+        <span class="glyph">§ I</span>
+        <span class="tag">⚖ Политика</span>
+        <h3>ЕС запретил одноразовый пластик в публичных местах с 2027 года</h3>
+        <p class="essence">Парламент утвердил закон, запрещающий пластиковую посуду и стаканчики в госучреждениях. Производители получают два года на переход к альтернативам.</p>
+        <div class="why"><b>Почему важно</b>Это повторяет сценарий трубочек — запрещённое сначала кажется мелочью, потом становится нормой везде.</div>
+        <a class="src" href="#">Источник: Reuters ↗</a>
+      </article>
+
+      <article class="article reveal d2">
+        <span class="glyph">§ II</span>
+        <span class="tag">🔬 Наука</span>
+        <h3>Найден гриб, разлагающий пластик за 90 дней</h3>
+        <p class="essence">Команда из Дании описала культуру, переваривающую ПЭТ в компост без нагрева. Пока — лабораторные условия и один вид пластика, но скорость впечатляет.</p>
+        <div class="why"><b>Почему важно</b>Если технологию масштабируют, проблемы полигонов могут смягчиться в течение десятилетия.</div>
+        <a class="src" href="#">Источник: Nature ↗</a>
+      </article>
+
+      <article class="article reveal d3">
+        <span class="glyph">§ III</span>
+        <span class="tag">🏭 Бизнес</span>
+        <h3>Рынок вторсырья вырос на 18% — впервые за пять лет</h3>
+        <p class="essence">Цены на переработанный картон и ПЭТ-гранулы выросли после того, как ритейл массово перешёл на контракты с переработчиками.</p>
+        <div class="why"><b>Почему важно</b>Деньги — сильнейший двигатель: когда вторсырьё выгодно, его начинают везде искать.</div>
+        <a class="src" href="#">Источник: Ведомости ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 5. МАТЕРИАЛ НЕДЕЛИ ==================== -->
+  <section id="feature">
+    <div class="section-mark feature-wrap-mark">
+      <span class="num">02</span>
+      <h2>Материал недели</h2>
+    </div>
+    <div class="feature-wrap reveal d2">
+      <div class="feature">
+        <div class="inside">
+          <div class="kicker">Глубокий разбор · 6 минут чтения</div>
+          <h3>Как устроен рынок углеродных квот — и почему его критикуют с обеих сторон</h3>
+          <p>Идея проста: государство разрешает компаниям выбрасывать определённый объём CO₂, а «право на выброс» становится товаром. Те, кто загрязняет меньше, могут продать остаток квоты тем, кому нужен больше.</p>
+          <p class="pull">«Квота не очищает атмосферу — она лишь назначает загрязнению цену»</p>
+          <p>Экономисты любят такую систему за эффективность: не важно, кто именно сократит выбросы, важно, что суммарная цифра падает. Экологи отвечают, что «право дышать платно» — это моральная ловушка. В колонке разбираем, где истина.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6. ЦИФРА НЕДЕЛИ ==================== -->
+  <section id="stat">
+    <div class="section-mark">
+      <span class="num">03</span>
+      <h2>Цифра недели</h2>
+    </div>
+    <div class="stat reveal d2">
+      <div class="big">42<sup>%</sup></div>
+      <p class="caption"><b>Рекорд переработки за 20 лет</b>В прошлом году переработано 42% бумажной тары. В 2010-м было 28% — тренд устойчивый, темп примерно +0,7 п.п. в год.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 7. ПОДБОРКА ССЫЛОК ==================== -->
+  <section id="links">
+    <div class="section-mark">
+      <span class="num">04</span>
+      <h2>Что почитать</h2>
+    </div>
+    <div class="list">
+      <div class="item reveal d1">
+        <span class="kind">Лонгрид</span>
+        <div><a href="#">Разбор: сколько пластиковых частиц мы съедаем за год</a><br><span class="txt">Больше, чем вы думаете. И это не пугалка, а расчёт по данным исследований.</span></div>
+      </div>
+      <div class="item reveal d2">
+        <span class="kind">Подкаст</span>
+        <div><a href="#">«Материальный мир», серия о вторичном производстве</a><br><span class="txt">Сорок минут о том, куда на самом деле едут ваши пакетики после контейнера.</span></div>
+      </div>
+      <div class="item reveal d3">
+        <span class="kind">Видео</span>
+        <div><a href="#">Как работает перерабатывающий завод изнутри</a><br><span class="txt">Экскурсия по сортировке — редкая, потому что такие заводы обычно закрыты для прессы.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 8. ИНТЕРАКТИВ ==================== -->
+  <section id="ask">
+    <div class="section-mark">
+      <span class="num">05</span>
+      <h2>Вопрос недели</h2>
+    </div>
+    <div class="question reveal d2">
+      <p class="ask">Сортируешь ли ты мусор?</p>
+      <div class="opts">
+        <span>Строго всегда</span>
+        <span>Пытаюсь</span>
+        <span>Не хватает инфраструктуры</span>
+        <span>Нет</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 9. ФУТЕР ==================== -->
+  <footer>
+    <div class="fronds">❦ ❧ ❦</div>
+    <p>ЭкоДайджест — полевой журнал об экологии. Пишу для начинающих, объясняю просто.</p>
+    <p style="margin-top:8px"><a href="#">Архив выпусков</a> · <a href="#">Подписаться</a> · <a href="#">Отписаться</a> · <a href="#">Написать автору</a></p>
+    <p style="margin-top:14px; font-size:11px; letter-spacing:.12em; text-transform:uppercase">Выпуск №12 · 26 октября 2026</p>
+  </footer>
+
+</div>
+</body>
+</html>

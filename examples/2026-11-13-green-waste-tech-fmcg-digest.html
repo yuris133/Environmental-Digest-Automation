@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Эко-дайджест FMCG №8 — 13 ноября 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3EEE2;
+    --paper-deep: #E9E2D2;
+    --ink: #1C3327;
+    --ink-soft: #3E5849;
+    --ink-faded: #7D8C7C;
+    --clay: #B4552D;
+    --olive: #6B7A3F;
+    --forest: #16281F;
+    --hairline: rgba(28, 51, 39, .22);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Golos Text', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Зернистость бумаги */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--olive); color: var(--paper); }
+
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 0;
+  }
+
+  /* ============ ПОЯВЛЕНИЕ ============ */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: rise .7s cubic-bezier(.22,.8,.3,1) both; }
+  .d1 { animation-delay: .05s } .d2 { animation-delay: .15s }
+  .d3 { animation-delay: .25s } .d4 { animation-delay: .35s }
+  .d5 { animation-delay: .45s }
+
+  /* ============ 1. ШАПКА ============ */
+  header {
+    padding: 48px 0 40px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    display: block;
+    margin: 36px auto 0;
+    width: 100%;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+  }
+  header::before {
+    content: '❧';
+    position: absolute;
+    bottom: -0.65em; left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    padding: 0 14px;
+    color: var(--olive);
+    font-size: 20px;
+    z-index: 2;
+  }
+
+  .stamp {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--clay);
+    border: 1px solid var(--clay);
+    padding: 7px 16px 6px;
+    border-radius: 2px;
+    transform: rotate(-2deg);
+    margin-bottom: 26px;
+  }
+
+  h1.masthead {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(44px, 8vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+  h1.masthead em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--olive);
+  }
+
+  .masthead-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead-sub b { color: var(--clay); font-weight: 600; }
+
+  /* ============ НАВИГАЦИЯ ПО РУБРИКАМ ============ */
+  nav.rubrics {
+    padding: 26px 0 10px;
+    text-align: center;
+  }
+  nav.rubrics a {
+    display: inline-block;
+    margin: 4px 3px;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--hairline);
+    padding: 7px 14px 6px;
+    border-radius: 999px;
+    transition: all .25s ease;
+  }
+  nav.rubrics a:hover {
+    background: var(--forest);
+    color: var(--paper);
+    border-color: var(--forest);
+  }
+
+  /* ============ ОБЩИЙ БЛОК СЕКЦИИ ============ */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--hairline); }
+
+  .section-mark {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .section-mark .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 30px;
+    color: var(--clay);
+    line-height: 1;
+  }
+  .section-mark h2 {
+    font-size: 12px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .section-mark::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--hairline);
+    transform: translateY(-5px);
+  }
+
+  /* ============ 2. ЛИД ============ */
+  .lead p {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vw, 29px);
+    line-height: 1.42;
+    font-weight: 500;
+    max-width: 700px;
+  }
+  .lead p::first-letter {
+    font-size: 2.6em;
+    font-weight: 700;
+    float: left;
+    line-height: .78;
+    padding: 6px 10px 0 0;
+    color: var(--clay);
+  }
+  .lead .sign {
+    margin-top: 18px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  /* ============ 3. НОВОСТИ ============ */
+  .news { display: grid; gap: 44px; max-width: 780px; }
+  .article { position: relative; padding-left: 54px; }
+  .article .glyph {
+    position: absolute;
+    left: 0; top: -4px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--ink-faded);
+    transition: color .3s ease;
+  }
+  .article:hover .glyph { color: var(--clay); }
+
+  .article .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+    margin-bottom: 10px;
+  }
+  .article h3 {
+    font-family: var(--serif);
+    font-size: clamp(23px, 3.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .article .essence { color: var(--ink-soft); margin-bottom: 14px; max-width: 640px; }
+  .article .why {
+    border-left: 2px solid var(--clay);
+    padding-left: 14px;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .article .why b {
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .18em;
+    color: var(--clay);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .article a.src {
+    font-size: 13px;
+    color: var(--ink-faded);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-faded);
+    transition: color .25s;
+  }
+  .article a.src:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* Фото в новостях */
+  .article figure { margin: 0 0 16px; }
+  .article figure img {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    border: 1px solid var(--hairline);
+    padding: 6px;
+    background: var(--paper-deep);
+    filter: sepia(.06);
+  }
+  .article figure figcaption {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faded);
+    margin-top: 6px;
+    max-width: 620px;
+  }
+  .article figure svg {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    border: 1px solid var(--hairline);
+    padding: 6px;
+    background: var(--paper-deep);
+  }
+
+  /* ============ МАТЕРИАЛ НЕДЕЛИ ============ */
+  .feature-wrap { margin: 0 -20px; }
+  .feature {
+    background: var(--forest);
+    color: var(--paper);
+    padding: 52px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 220px; height: 220px;
+    border: 1px solid rgba(243,238,226,.15);
+    border-radius: 50%;
+  }
+  .feature::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 140px; height: 140px;
+    border: 1px solid rgba(243,238,226,.1);
+    border-radius: 50%;
+  }
+  .feature-wrap .section-mark { padding: 0 20px; margin-top: 48px; margin-bottom: 0; }
+  .feature .inside { max-width: 640px; }
+  .feature .kicker {
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: #A8B8A0;
+    margin-bottom: 18px;
+  }
+  .feature h3 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.12;
+    margin-bottom: 20px;
+  }
+  .feature p { color: rgba(243,238,226,.82); font-size: 16px; margin-bottom: 14px; }
+  .feature .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--paper);
+    border-left: 2px solid var(--olive);
+    padding: 4px 0 4px 20px;
+    margin: 26px 0;
+  }
+
+  /* ============ ЦИФРА НЕДЕЛИ ============ */
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    flex-wrap: wrap;
+  }
+  .stat .big {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(90px, 16vw, 150px);
+    line-height: .85;
+    color: var(--forest);
+  }
+  .stat .big sup {
+    font-size: .35em;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--clay);
+  }
+  .stat .caption { max-width: 420px; font-size: 15px; color: var(--ink-soft); }
+  .stat .caption b {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  /* ============ РУБРИКИ ============ */
+  .rubric-group { margin-bottom: 28px; }
+  .rubric-group h3 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--olive);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .rubric-group ul { list-style: none; max-width: 780px; }
+  .rubric-group li {
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--hairline);
+    font-size: 15.5px;
+    color: var(--ink-soft);
+  }
+  .rubric-group li:last-child { border-bottom: none; }
+  .rubric-group li b { color: var(--ink); }
+  .rubric-group a { color: var(--ink-faded); text-decoration: none; border-bottom: 1px dotted var(--ink-faded); }
+  .rubric-group a:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* ============ ПОДБОРКА ССЫЛОК ============ */
+  .list { max-width: 760px; }
+  .list .item {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .list .item:last-child { border-bottom: none; }
+  .list .kind {
+    flex-shrink: 0;
+    width: 84px;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+  }
+  .list .item a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .list .item a:hover { color: var(--clay); }
+  .list .item span.txt { font-size: 15px; color: var(--ink-soft); }
+
+  /* ============ ИНТЕРАКТИВ ============ */
+  .question {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid var(--hairline);
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .question::before, .question::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--olive);
+    font-size: 14px;
+  }
+  .question::before { left: -34px; }
+  .question::after { right: -34px; }
+  .question p.ask {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.4vw, 32px);
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .question .opts { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .question .opts span {
+    font-size: 13px;
+    border: 1px solid var(--hairline);
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .question .opts span:hover {
+    background: var(--clay);
+    border-color: var(--clay);
+    color: var(--paper);
+  }
+
+  /* ============ ФУТЕР ============ */
+  footer {
+    padding: 44px 0 60px;
+    text-align: center;
+    color: var(--ink-faded);
+    font-size: 13px;
+  }
+  footer .fronds { color: var(--olive); font-size: 18px; letter-spacing: .5em; margin-bottom: 14px; }
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-soft); }
+  footer a:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* ============ АДАПТИВ ============ */
+  @media (max-width: 640px) {
+    .article { padding-left: 0; padding-top: 34px; }
+    .article .glyph { top: -20px; }
+    .stat { gap: 18px; }
+    .list .item { flex-direction: column; gap: 4px; }
+    .question::before, .question::after { display: none; }
+    .feature { padding: 40px 22px; }
+    section { padding: 44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ==================== 1. ШАПКА ==================== -->
+  <header>
+    <div class="stamp reveal d1">Выпуск №8 · 13 ноября 2026</div>
+    <h1 class="masthead reveal d2">Эко<em>Дайджест</em> FMCG</h1>
+    <p class="masthead-sub reveal d3">Тема выпуска — <b>какао-плод целиком · и отходы FMCG → энергия по трубе</b></p>
+  </header>
+
+  <!-- ==================== НАВИГАЦИЯ ==================== -->
+  <nav class="rubrics reveal d3">
+    <a href="#news">Новости</a>
+    <a href="#rubrics">Рубрики</a>
+    <a href="#feature">Связка недели</a>
+    <a href="#stat">Цифра</a>
+    <a href="#links">Что почитать</a>
+    <a href="#ask">Опрос</a>
+  </nav>
+
+  <!-- ==================== 2. ЛИД ==================== -->
+  <section class="lead reveal d4">
+    <p>Какао-шелуха и пульпа на этой неделе монетизированы одновременно в трёх странах и трёх каналах: розничный продукт (Blue Stripes, США), биоуголь для ферм с планом на углеродные кредиты (Вьетнам) и удобрения с кормом (Olam Agri, Нигерия). Параллельно модель «отходы FMCG → газ → энергия» вошла в фазу реальных денег: дайджестер за $40 млн у йогуртового завода Danone и завод Divert на 120 000 т/год с инжекцией биометана прямо в газопровод. В России тем временем побочные потоки пошли в корма и на биржу, а РОП ужесточает доли вторсырья.</p>
+    <p class="sign">— по еженедельному отчёту за период 7–13 ноября 2026 · архив — папка Report/</p>
+  </section>
+
+  <!-- ==================== 3. НОВОСТИ ==================== -->
+  <section id="news">
+    <div class="section-mark">
+      <span class="num">01</span>
+      <h2>Главные новости</h2>
+    </div>
+    <div class="news">
+
+      <article class="article reveal d1">
+        <span class="glyph">§ I</span>
+        <span class="tag">Кондитерка · Апсайклинг</span>
+        <h3>Blue Stripes: какао-плод до последней частицы — и рынок апсайкла в 4 раза больше, чем пять лет назад</h3>
+        <figure>
+          <svg viewBox="0 0 620 300" role="img" aria-label="Схема: какао-плод целиком даёт три канала монетизации">
+            <text x="310" y="30" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#1C3327">Какао-плод целиком: три канала выручки</text>
+            <ellipse cx="310" cy="90" rx="52" ry="34" fill="#6B7A3F"/>
+            <ellipse cx="310" cy="90" rx="34" ry="22" fill="#E9E2D2"/>
+            <ellipse cx="310" cy="90" rx="16" ry="10" fill="#1C3327"/>
+            <text x="310" y="145" text-anchor="middle" font-size="12" fill="#7D8C7C">бобы · пульпа · шелуха — традиционно используется ~30%</text>
+            <g font-family="Georgia, serif" font-size="15" fill="#1C3327">
+              <rect x="30" y="185" width="165" height="80" fill="none" stroke="#B4552D" stroke-width="1.5"/>
+              <text x="112" y="218" text-anchor="middle" fill="#B4552D" font-weight="bold">Розница · США</text>
+              <text x="112" y="243" text-anchor="middle" font-size="12">Cacao Water, Gummies</text>
+              <rect x="228" y="185" width="165" height="80" fill="none" stroke="#6B7A3F" stroke-width="1.5"/>
+              <text x="310" y="218" text-anchor="middle" fill="#6B7A3F" font-weight="bold">Биоуголь · Вьетнам</text>
+              <text x="310" y="243" text-anchor="middle" font-size="12">6000 т/год, кредиты</text>
+              <rect x="426" y="185" width="165" height="80" fill="none" stroke="#1C3327" stroke-width="1.5"/>
+              <text x="508" y="218" text-anchor="middle" fill="#1C3327" font-weight="bold">Агро · Нигерия</text>
+              <text x="508" y="243" text-anchor="middle" font-size="12">удобрения и корм</text>
+            </g>
+            <path d="M 280 122 L 130 182" stroke="#6B7A3F" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+            <path d="M 310 128 L 310 182" stroke="#6B7A3F" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+            <path d="M 340 122 L 490 182" stroke="#6B7A3F" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+          </svg>
+          <figcaption>Фото взять неоткуда (фото Blue Stripes на источнике рендерится через CDN) — нарисована SVG-схема в палитре шаблона: три канала одной «отходной» массы.</figcaption>
+        </figure>
+        <p class="essence">Компания перерабатывает весь плод какао — бобы, пульпу и шелуху — в Cacao Water и Cacao Superfruit Gummies; по её заявлению это утраивает ценность урожая для фермера (традиционно используется ~30% плода). Новость — в обзоре The Food Institute «Made from scraps: 5 innovations» (12.11). Рынок Upcycled Certified вырос с 145 продуктов / 25 компаний (2021) до 622 позиций / 106 брендов (Q4 2025), продажи в США +42% за 2024 — но апсайкл-клейм несут менее 1% глобальных food-launches (Mintel, фев 2026). В том же обзоре — апсайкл-ингредиенты Kerry (Cacaosomes из какаовойлочки, Elevatrio+ из какао-пульпы).</p>
+        <div class="why"><b>Почему важно</b>Тренд растёт быстро, но клейм держит меньше 1% фуд-запусков — поле почти пустое для новых игроков, в том числе кондитерских.</div>
+        <a class="src" href="https://foodinstitute.com/focus/made-from-scraps-5-innovations-in-upcycled-food-packaging/">The Food Institute ↗</a>
+      </article>
+
+      <article class="article reveal d2">
+        <span class="glyph">§ II</span>
+        <span class="tag">Биогаз · Производство</span>
+        <h3>PurposeEnergy + Danone: дайджестер за $40 млн — отходы йогуртового завода в энергию того же завода</h3>
+        <p class="essence">Анаэробный дайджестер в г. Minster (Огайо) принимает до 250 000 галлонов/сутки остатков йогуртового производства. Биогаз (~50 000 MMBtu/год) по трубе идёт в выделенный котёл соседнего (менее мили) крупнейшего йогуртового завода Danone в США, вытесняя природный газ — программа «Re-Fuel». Побочно — очищенная вода и почвенные amendments. Эффект: ~3200 т CO2e/год вытесненного газа + ~720 т CO2e за отмену вывоза отходов. Приём — весна 2027.</p>
+        <div class="why"><b>Почему важно</b>Замкнутый контур: отходы производства стали энергией того же завода — без логистики и стороннего покупателя газа.</div>
+        <a class="src" href="https://fsenews.com/article/40m-ohio-digester-turns-danone-yogurt-waste-into-plant-energy">FSE News ↗</a> ·
+        <a class="src" href="https://milknews.ru/index/moloko-nergiya-apk.html">Milknews (рус.) ↗</a>
+      </article>
+
+      <article class="article reveal d3">
+        <span class="glyph">§ III</span>
+        <span class="tag">Инфраструктура · Ритейл</span>
+        <h3>Divert: 120 000 т нераспроданных продуктов в год — биометан прямо в газопровод</h3>
+        <p class="essence">Integrated Diversion &amp; Energy Facility в г. Lexington (Северная Каролина) превращает нераспроданные и неподходящие для донаторства продукты в RNG с инжекцией прямо в газотрубопровод, органические удобрения (часть OMRI-listed) и рециркулирует связанную с продуктом воду. До 120 000 т/год при полной загрузке; якорный клиент — сеть Harris Teeter (все магазины), отдельно подключены Publix и UNFI; 2500+ ритейл-точек и 20 РЦ к концу 2026.</p>
+        <div class="why"><b>Почему важно</b>«Утилизация отходов ритейла» превратилась в инфраструктурный бизнес федерального масштаба с якорными контрактами.</div>
+        <a class="src" href="https://divertinc.com/divert-opens-north-carolina-facility-expanding-its-circularity-platform-in-the-southeast/">Divert, Inc. ↗</a>
+      </article>
+
+      <article class="article reveal d4">
+        <span class="glyph">§ IV</span>
+        <span class="tag">Упаковка · Бумага</span>
+        <h3>Constantia Flexibles + NÖM: бумажная обёртка для масла вместо алюминиевого ламината</h3>
+        <figure>
+          <img src="img/ecopaperhighplus.webp" alt="Бумажная обёртка для масла EcoPaperHighPlus" loading="lazy">
+          <figcaption>EcoPaperHighPlus — бумажная обёртка для масла. Фото из статьи-источника: packagingstrategies.com</figcaption>
+        </figure>
+        <p class="essence">Первый коммерческий запуск в Европе бумажной обёртки для масла вместо алюминиевого ламината. Без PFAS, разработана по дизайн-гайдам 4evergreen, рециклизируемость проверена методом CEPI lab v3 (переработка в бумажном потоке). Срок годности масла сопоставим с алюминиевым референсом; работает на существующих машинах для заворачивания масла.</p>
+        <div class="why"><b>Почему важно</b>Сложные барьерные приложения (жир) уходят на бумагу — последний рубеж пластика и ламината дрогнул.</div>
+        <a class="src" href="https://www.packagingstrategies.com/articles/106776-constantia-flexibles-and-nom-launch-paper-based-butter-wrap-in-europe">Packaging Strategies ↗</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== РУБРИКИ ==================== -->
+  <section id="rubrics">
+    <div class="section-mark">
+      <span class="num">02</span>
+      <h2>Рубрики</h2>
+    </div>
+
+    <div class="rubric-group">
+      <h3>🐾 Корма для животных</h3>
+      <ul>
+        <li><b>Наука: отходы лапши заменяют кукурузу в печенье для собак до 50%.</b> Индийское исследование (Vol. 11, Special Issue 8, ноябрь 2026): до 50% замещения продукт изоазотистый и изоэнергетический, цвет не менялся (p&gt;0,05), поедаемость у лабрадоров не отличалась; 4032 ккал/кг ОЭ, 11,2% протеина. → <a href="https://www.veterinarypaper.com/special-issue/2026/11/8S/S-11-7-28">Int. Journal of Veterinary Sciences</a></li>
+        <li><b>Duynie (Нидерланды) — дробина → протеин &gt;50% для food и pet food.</b> Запатентованный процесс сепарации с Heineken поднимает протеин дробины с ~20% до &gt;50%; версия для pet food годится для экструзии и холодного прессования, хранение 12 мес. → <a href="https://www.duynie.com/en/petfood/products/brewers-spent-grain-protein-p/">Duynie ↗</a></li>
+        <li><b>«Вайсер» (Калининград) — гранулированный корм из пивной дробины.</b> Компания перерабатывает дробину собственной солодовни и пивоварен (с дрожжами) в высокобелковый гранулированный корм; покупают местные агрохолдинги («Долгов Групп»); «реализуем всё, что производим». → <a href="https://mbkaliningrad.ru/story/53689/">«Мой бизнес», Калининград ↗</a></li>
+        <li><b>Астана — платные пункты приёма чёрствого хлеба → корм.</b> Сеть из 20 пунктов с оплатой за килограмм; 1 кг сухого хлеба ≈ 1,5 кг зерна по питательности; сейчас до 400 кг/час, план — 1 т/час, потенциал города до 7 т/сутки. → <a href="https://caliber.az/post/v-kazahstane-budut-platit-za-cherstvyj-hleb-i-kroshki/">Caliber.Az ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="rubric-group">
+      <h3>🏭 Бизнес и технологии</h3>
+      <ul>
+        <li><b>Unilever + PGN (Индонезия) — биометан из органических отходов, переговорная стадия.</b> Меморандум о намерениях: фидсток, интеграция инфраструктуры, развитие рынка и регулирование; объёмы и сроки не названы. → <a href="https://biofuelsdigest.com/indonesias-pgn-to-develop-waste-based-biomethane-with-unilever/">Biofuels Digest ↗</a></li>
+        <li><b>Greenjoules (Индия) — ₹150 крор Series B от Amazon Climate Pledge Fund.</b> Термокрекинг агропромышленных отходов в renewable diesel и bio-naphtha без модификации двигателей; всего ~$28–30 млн + кредит ₹100 крор; завод в Пуне с 2027, цель 200 000 л/сутки. → <a href="https://entrackr.com/news/greenjoules-raises-rs-150-cr-in-series-b-led-by-amazon-funds-secures-rs-100-cr-loan-from-tdb-12801123">Entrackr ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="rubric-group">
+      <h3>📦 Упаковка, AI-сортировка</h3>
+      <ul>
+        <li><b>Sustainable Packaging Summit 2026 (Утрехт): paperization и EUDR.</b> YUTOECO показал 100% волоконную коробку с целлюлозным «окном» и упаковку из волокон агропобочных продуктов — толчком стал EUDR, сузивший доступ к древесному волокну; Nestlé предупредила про «слишком жёсткий, слишком быстрый» дизайн для рециклизации 2030; Bel Group описала переход Babybel с пластика на бумагу. → <a href="https://www.packagingeurope.com/live-updates-from-the-2026-sustainable-packaging-summit/">Packaging Europe ↗</a></li>
+        <li><b>Matiq (UK) — 14 AI-анализаторов PolyPerception + 3 TOMRA Autosort.</b> Реалтайм-мониторинг загрязнений и качества потока на заводе 250 000 т/год, под новую UK guidance по AI-based sampling. → <a href="https://ecoplasticsinpackaging.com/waste-management/matiq-ai-waste-analysers/">Eco Plastics in Packaging ↗</a></li>
+        <li><b>NVIDIA — четыре AI-стартапа сортировки к COP31.</b> Greyparrot (300+ камер в 20+ странах, у Amcor выход food-grade пластика +12%), EverestLabs (~150 робо-систем, ~25 000 т отсортировано), AIRECO (план утроить мощность до 48 000 т/год при −85% затрат), reverse.fashion; клиенты — в том числе Coca-Cola, Colgate. → <a href="https://blogs.nvidia.com/blog/ai-recycling-startups/">NVIDIA ↗</a></li>
+        <li><b>Татарстан — первая биржевая сделка вторсырьём: 12 т ПЭТФ.</b> УК «ПЖКХ» продала 12 т прозрачного голубого ПЭТФ (засорённость 4%) на Бирже ЦТС; биржа взаимодействует с ФГИС УТКО (с июня 2026); сентябрь–октябрь — 7 аукционов. → <a href="https://nia.eco/2026/11/12/150466/">НИА «Экология» ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="rubric-group">
+      <h3>⚖️ Политика и законы</h3>
+      <ul>
+        <li><b>РОП (Россия): доли вторсырья расширяются с 12 до 20 видов, упаковщики просят отложить экосбор.</b> Распоряжение от 31.10.2026 № 3169-р: стеклотара 15%, топливные брикеты 40%, углеродные сорбенты 70% и др.; 100+ упаковщиков просят не повышать в 2027 коэффициенты экосбора (рост нагрузки 108–131%); к 2027 норматив утилизации упаковки — 100% против 75% в 2026. → <a href="https://www.consultant.ru/legalnews/33055/">ConsultantPlus ↗</a> · <a href="https://musor.moscow/novosti/upakovshhiki-prosyat-pravitelstvo-otlozhit-povyshenie-ekosbora-v-2027-godu/">Musor.Moscow ↗</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== СВЯЗКА НЕДЕЛИ ==================== -->
+  <section id="feature">
+    <div class="feature-wrap reveal d2">
+      <div class="feature">
+        <div class="inside">
+          <div class="kicker">Связка недели · главная мысль выпуска</div>
+          <h3>Отходы FMCG перестали быть проблемой утилизации — они стали энергией по трубе и ингредиентом с деньгами</h3>
+          <p>Одна и та же «отходная» масса на этой неделе уходит по несмешивающимся каналам. Розница: Blue Stripes делает напитки и конфеты из пульпы и шелухи какао, утраивая ценность урожая для фермера. Энергетика: PurposeEnergy за $40 млн замыкает отходы Danone обратно в энергию того же завода, а Divert прогоняет 120 000 т нераспроданных продуктов в год прямо в газопровод. Агро: Olam Agri превращает ~10 т шелухи на 1 т бобов в компост и корм с экономией 30% на удобрениях.</p>
+          <p class="pull">«Пока food-ветка дозревает, энергетическая и агро уже платят за утилизацию сами»</p>
+          <p>Порядок выхода каналов показателен: сначала «дальняя» монетизация (энергия, кредиты — без допуска в еду), потом агросервис, последней — еда с самым длинным регуляторным путём и самой большой отдачей. Тот же конвейер виден в pet food: научная статья (лапша до 50% кукурузы) → коммерческий ингредиент (Duynie, протеин дробины &gt;50%) → оценка ниши $0,6 → $2,2 млрд к 2036. В России модель подхватили «Вайсер» и Астана, а РОП добавил спроса на вторсырье: перечень расширен до 20 видов.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ЦИФРА НЕДЕЛИ ==================== -->
+  <section id="stat">
+    <div class="section-mark">
+      <span class="num">03</span>
+      <h2>Цифра недели</h2>
+    </div>
+    <div class="stat reveal d2">
+      <div class="big">622<sup>продукта</sup></div>
+      <p class="caption"><b>Upcycled Certified — и поле всё ещё пустое</b>Рынок апсайкл-продуктов вырос со 145 позиций / 25 компаний (2021) до 622 продуктов / 106 брендов (Q4 2025), продажи в США +42% за 2024. Но апсайкл-клейм несут менее 1% глобальных food-launches (Mintel, фев 2026). <a href="https://foodinstitute.com/focus/made-from-scraps-5-innovations-in-upcycled-food-packaging/" style="color:var(--ink-faded)">The Food Institute ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ==================== ПОДБОРКА ССЫЛОК ==================== -->
+  <section id="links">
+    <div class="section-mark">
+      <span class="num">04</span>
+      <h2>Что почитать</h2>
+    </div>
+    <div class="list">
+      <div class="item reveal d1">
+        <span class="kind">Обзор</span>
+        <div><a href="https://foodinstitute.com/focus/made-from-scraps-5-innovations-in-upcycled-food-packaging/">Made from scraps: 5 innovations in upcycled food — The Food Institute</a><br><span class="txt">Пять апсайкл-марок от какао-плода целиком до муки из миндальной шелухи + данные роста Upcycled Certified.</span></div>
+      </div>
+      <div class="item reveal d2">
+        <span class="kind">Live-блог</span>
+        <div><a href="https://www.packagingeurope.com/live-updates-from-the-2026-sustainable-packaging-summit/">Sustainable Packaging Summit 2026 — Packaging Europe</a><br><span class="txt">Nestlé, Bel, YUTOECO: paperization, EUDR-дефицит волокна и «слишком жёсткий, слишком быстрый» дизайн 2030.</span></div>
+      </div>
+      <div class="item reveal d3">
+        <span class="kind">Инфраструктура</span>
+        <div><a href="https://divertinc.com/divert-opens-north-carolina-facility-expanding-its-circularity-platform-in-the-southeast/">Divert открывает площадку в Северной Каролине</a><br><span class="txt">120 000 т/год нераспроданных продуктов → RNG с инжекцией прямо в газопровод, удобрения и вода.</span></div>
+      </div>
+      <div class="item reveal d4">
+        <span class="kind">Справочно</span>
+        <div><a href="https://marketmindsadvisory.com/upcycled-pet-ingredients-market/">Upcycled pet ingredients market — Market Minds Advisory</a><br><span class="txt">$0,6 млрд (2025) → $2,2 млрд к 2036, побочные белковые потоки CAGR 14,8% — деньги уже просчитали конвейер.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ИНТЕРАКТИВ ==================== -->
+  <section id="ask">
+    <div class="section-mark">
+      <span class="num">05</span>
+      <h2>Вопрос недели</h2>
+    </div>
+    <div class="question reveal d2">
+      <p class="ask">Какой канал монетизации какао-побочных продуктов первым запустил бы у кондитерской фабрики?</p>
+      <div class="opts">
+        <span>Сразу в продукт</span>
+        <span>Биоуголь + кредиты</span>
+        <span>Компост/корм фермерам</span>
+        <span>Комбинированная схема</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ФУТЕР ==================== -->
+  <footer>
+    <div class="fronds">❦ ❧ ❦</div>
+    <p>Эко-дайджест FMCG №8 — собран агентом Claude по еженедельному отчёту за период 7–13 ноября 2026 (отчёт — выпуск №8).</p>
+    <p style="margin-top:8px">Архив отчётов — <b>Report/</b> · Архив дайджестов — <b>digest/</b> · Markdown-версии: <i>2026-11-13-...-digest.md</i> и <i>-digest-telegram.md</i></p>
+    <p style="margin-top:14px; font-size:11px; letter-spacing:.12em; text-transform:uppercase">Фото: packagingstrategies.com · Без фото — SVG-схема в палитре шаблона</p>
+  </footer>
+
+</div>
+</body>
+</html>

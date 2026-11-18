@@ -1,0 +1,59 @@
+{
+    "added":  [
+                  {
+                      "guid":  "test-imggen-social-content",
+                      "file":  "posts news/test-imggen-social-content.json",
+                      "title":  "TEST: временная запись для проверки генерации картинок",
+                      "pubDate":  "Sun, 01 Nov 2026 10:35:00 +0300",
+                      "image":  "test-imggen-post.jpg",
+                      "img_source":  "posts/img/test-imggen-post.jpg"
+                  },
+                  {
+                      "guid":  "2026-11-09-environmental-news-black-soldier-fly-billet-social-content",
+                      "file":  "posts news/2026-11-09-environmental news-black-soldier-fly-billet-social-content.json",
+                      "title":  "Мусор + личинки = белок: Texas A\u0026M запатентовала «брикет чёрной львинки»",
+                      "pubDate":  "Wed, 11 Nov 2026 15:28:22 +0300",
+                      "image":  "img/2026-11-09-black-soldier-fly-billet-post.jpg"
+                  },
+                  {
+                      "guid":  "2026-11-12-marketplace-disposal-social-content",
+                      "file":  "posts news/2026-11-12-marketplace-disposal-social-content.json",
+                      "title":  "♻️ «Утилизация» списанного товара вернула его в продажу",
+                      "pubDate":  "Thu, 12 Nov 2026 10:35:00 +0300",
+                      "image":  "2026-11-07-marketplace-disposal-post.jpg",
+                      "img_source":  "posts/img/2026-11-07-marketplace-disposal-post.jpg"
+                  },
+                  {
+                      "guid":  "2026-11-13-constantia-butter-paper-wrap-social-content",
+                      "file":  "posts news/2026-11-13-constantia-butter-paper-wrap-social-content.json",
+                      "title":  "🧈 Масло переехало с алюминия на бумагу: в Европе запущена обёртка EcoPaperHighPlus",
+                      "pubDate":  "Fri, 13 Nov 2026 10:35:00 +0300",
+                      "image":  "ecopaperhighplus.webp",
+                      "img_source":  "digest/img/ecopaperhighplus.webp"
+                  },
+                  {
+                      "guid":  "2026-11-16-olam-cocoa-pods-feed-social-content",
+                      "file":  "posts news/2026-11-16-olam-cocoa-pods-feed-social-content.json",
+                      "title":  "🍫 10 тонн шелухи на 1 тонну бобов: Olam Agri превращает какаоотходы в удобрения и корма",
+                      "pubDate":  "Mon, 16 Nov 2026 10:35:00 +0300",
+                      "image":  "olam-cocoa-pods.jpg",
+                      "img_source":  "digest/img/olam-cocoa-pods.jpg"
+                  },
+                  {
+                      "guid":  "2026-11-17-dongnai-cocoa-biochar-social-content",
+                      "file":  "posts news/2026-11-17-dongnai-cocoa-biochar-social-content.json",
+                      "title":  "🔥 6000 тонн какаовойлочки в год → биоуголь: во Вьетнаме запустили циркулевый контур для ферм",
+                      "pubDate":  "Tue, 17 Nov 2026 10:35:00 +0300",
+                      "image":  "dongnai-cocoa-biochar.webp",
+                      "img_source":  "digest/img/dongnai-cocoa-biochar.webp"
+                  },
+                  {
+                      "guid":  "2026-11-18-noodle-waste-dog-food-social-content-3",
+                      "file":  "posts news/2026-11-18-noodle-waste-dog-food-social-content.json",
+                      "title":  "🍝 Отходы лапши вместо кукурузы: наука подтвердила замещение до 50% в печенье для собак",
+                      "pubDate":  "Wed, 18 Nov 2026 10:35:00 +0300",
+                      "image":  "2026-11-18-noodle-waste-dog-food-post.jpg",
+                      "img_source":  "posts/img/2026-11-18-noodle-waste-dog-food-post.jpg"
+                  }
+              ]
+}
